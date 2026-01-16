@@ -1,0 +1,55 @@
+# Block Blast AI - 40 Million Steps Training Configuration
+# Optimized for long training runs
+
+# Environment settings
+environment:
+  board_size: 8
+  num_pieces_per_turn: 3
+  total_piece_types: 37
+
+# PPO hyperparameters
+ppo:
+  learning_rate: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_epsilon: 0.2
+  entropy_coef: 0.01
+  value_coef: 0.5
+  max_grad_norm: 0.5
+
+# Training settings
+training:
+  num_envs: 64                # Parallel environments
+  batch_size: 2048            # Batch size for CPU
+  num_epochs: 4               # PPO epochs per update
+  total_timesteps: 40000000   # 40 million steps
+  rollout_steps: 128          # Steps per rollout
+  
+# Network architecture
+network:
+  conv_channels: [64, 128, 128]
+  fc_hidden: [512, 256]
+  use_batch_norm: true
+  
+# Reward shaping (normalized for stable training)
+rewards:
+  line_clear_base: 1.0
+  block_placed: 0.01
+  game_over_penalty: -1.0
+  hole_penalty: -0.05
+  center_bonus: 0.02
+  combo_multiplier_bonus: 0.5
+  survival_bonus: 0.001
+
+# Logging and checkpointing  
+logging:
+  log_interval: 25            # Log every 25 updates (~100k steps)
+  save_interval: 100          # Save every 100 updates (~400k steps)
+  eval_interval: 50
+  eval_episodes: 10
+  
+# Paths
+paths:
+  checkpoint_dir: checkpoints
+  log_dir: logs
+  results_dir: results
