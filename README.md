@@ -2,6 +2,10 @@
 
 A deep reinforcement learning agent that learns to play Block Blast, achieving professional-level performance through self-play using **PPO with Action Masking**.
 
+## 📄 Project Report
+
+[**View the Full Project Report (PDF)**](./Block_Blast_RL_Report.pdf)
+
 ## About Block Blast
 
 Block Blast is a strategic puzzle game played on an 8×8 grid. Players receive 3 random pieces per turn from a pool of 37 possible shapes. The objective is to place pieces to complete full rows or columns, which then clear and award points. Strategic play involves creating combo setups for maximum score multipliers.
